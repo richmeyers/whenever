@@ -86,7 +86,7 @@ class OutputDefaultDefinedJobsTest < Test::Unit::TestCase
     end
     
     should "output the runner using that path" do
-      assert_match two_hours + %( cd /my/path && script/runner -e production 'blahblah'), @output
+      assert_match two_hours + %( cd /my/path && exec script/runner -e production 'blahblah'), @output
     end
   end
   
@@ -103,7 +103,7 @@ class OutputDefaultDefinedJobsTest < Test::Unit::TestCase
     end
     
     should "output the runner using that path" do
-      assert_match two_hours + %( cd /some/other/path && script/runner -e production 'blahblah'), @output
+      assert_match two_hours + %( cd /some/other/path && exec script/runner -e production 'blahblah'), @output
     end
   end
   
@@ -121,7 +121,7 @@ class OutputDefaultDefinedJobsTest < Test::Unit::TestCase
     end
     
     should "use the Rails 3 runner job by default" do
-      assert_match two_hours + %( cd /my/path && script/rails runner -e production 'blahblah'), @output
+      assert_match two_hours + %( cd /my/path && exec script/rails runner -e production 'blahblah'), @output
     end
   end
   
@@ -140,7 +140,7 @@ class OutputDefaultDefinedJobsTest < Test::Unit::TestCase
     end
     
     should "output the rake command using that path" do
-      assert_match two_hours + ' cd /my/path && RAILS_ENV=production rake blahblah --silent', @output
+      assert_match two_hours + ' cd /my/path && RAILS_ENV=production exec rake blahblah --silent', @output
     end
   end
   
@@ -157,7 +157,7 @@ class OutputDefaultDefinedJobsTest < Test::Unit::TestCase
     end
     
     should "output the rake command using that path" do
-      assert_match two_hours + ' cd /some/other/path && RAILS_ENV=production rake blahblah --silent', @output
+      assert_match two_hours + ' cd /some/other/path && RAILS_ENV=production exec rake blahblah --silent', @output
     end
   end
   

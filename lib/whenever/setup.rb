@@ -8,11 +8,11 @@ set :path, Whenever.path
 set :job_template, "/bin/bash -l -c ':job'"
 
 job_type :command, ":task :output"
-job_type :rake,    "cd :path && RAILS_ENV=:environment rake :task --silent :output"
+job_type :rake,    "cd :path && RAILS_ENV=:environment exec rake :task --silent :output"
 
 # Create a runner job that's appropriate for the Rails version,
 if File.exists?(File.join(path, 'script', 'rails'))
-  job_type :runner, "cd :path && script/rails runner -e :environment ':task' :output"
+  job_type :runner, "cd :path && exec script/rails runner -e :environment ':task' :output"
 else
-  job_type :runner, "cd :path && script/runner -e :environment ':task' :output"
+  job_type :runner, "cd :path && exec script/runner -e :environment ':task' :output"
 end

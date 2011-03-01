@@ -207,7 +207,7 @@ NEW_CRON
     end
     
     should "output the runner using the override environment" do
-      assert_match two_hours + %( cd /my/path && script/runner -e serious 'blahblah'), @output
+      assert_match two_hours + %( cd /my/path && exec script/runner -e serious 'blahblah'), @output
     end
   end
   
@@ -225,7 +225,7 @@ NEW_CRON
     end
     
     should "output the runner using the overridden path and environment" do
-      assert_match two_hours + %( cd /serious/path && script/runner -e serious 'blahblah'), @output
+      assert_match two_hours + %( cd /serious/path && exec script/runner -e serious 'blahblah'), @output
     end
   end
   
@@ -243,7 +243,7 @@ NEW_CRON
     end
     
     should "output the runner using the overridden path and environment" do
-      assert_match two_hours + %( cd /serious/path && script/runner -e serious 'blahblah'), @output
+      assert_match two_hours + %( cd /serious/path && exec script/runner -e serious 'blahblah'), @output
     end
   end
   
@@ -261,7 +261,7 @@ NEW_CRON
     end
     
     should "output the runner using the original environmnet" do
-      assert_match two_hours + %( cd /silly/path && script/runner -e silly 'blahblah'), @output
+      assert_match two_hours + %( cd /silly/path && exec script/runner -e silly 'blahblah'), @output
     end
   end
 
